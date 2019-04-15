@@ -1,0 +1,75 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.20.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Zhou Xx, AOTOM, LIC=AK156-DQA45-EZIWX-HGDGX-3VTYD-7A1KN
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.20
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 2 (build 183)
+Assembler:       Armasm.exe V5.06 update 2 (build 183)
+Linker/Locator:  ArmLink.exe V5.06 update 2 (build 183)
+Library Manager: ArmAr.exe V5.06 update 2 (build 183)
+Hex Converter:   FromElf.exe V5.06 update 2 (build 183)
+CPU DLL:         SARMCM3.DLL V5.20
+Dialog DLL:      DCM.DLL V1.13.7.0
+Target DLL:      Segger\JL2CM3.dll V2.99.20.0
+Dialog DLL:      TCM.DLL V1.14.9.0
+ 
+<h2>Project:</h2>
+E:\mywork\myproject\My_Github\Jarvis\Bootloader\WorkSpace\Bootloader.uvprojx
+Project File Date:  03/24/2019
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
+compiling Bsp_UartQueque.c...
+compiling Bsp_Uart.c...
+..\Bsp\Uart\Bsp_Uart.c(393): warning:  #177-D: variable "frist_time" was declared but never referenced
+  	uint8 frist_time = 0;
+..\Bsp\Uart\Bsp_Uart.c(394): warning:  #177-D: variable "last_time" was declared but never referenced
+  	uint8 last_time = 0;
+..\Bsp\Uart\Bsp_Uart.c(395): warning:  #550-D: variable "length" was set but never used
+  	uint8 length = 0;
+..\Bsp\Uart\Bsp_Uart.c(405): warning:  #550-D: variable "length" was set but never used
+  	uint8 length = 0;
+..\Bsp\Uart\Bsp_Uart.c(108): warning:  #177-D: function "Bsp_Uart_SetRxTimeout" was declared but never referenced
+  static void Bsp_Uart_SetRxTimeout(void)
+..\Bsp\Uart\Bsp_Uart.c(114): warning:  #177-D: function "Bsp_Uart_SetTxCrcErr" was declared but never referenced
+  static void Bsp_Uart_SetTxCrcErr(void)
+..\Bsp\Uart\Bsp_Uart.c(120): warning:  #177-D: function "Bsp_Uart_SetRxCrcErr" was declared but never referenced
+  static void Bsp_Uart_SetRxCrcErr(void)
+..\Bsp\Uart\Bsp_Uart.c(132): warning:  #177-D: function "Bsp_Uart_ClearRxConfirm" was declared but never referenced
+  static void Bsp_Uart_ClearRxConfirm(void)
+..\Bsp\Uart\Bsp_Uart.c(138): warning:  #177-D: function "Bsp_Uart_ClearTxTimeOut" was declared but never referenced
+  static void Bsp_Uart_ClearTxTimeOut(void)
+..\Bsp\Uart\Bsp_Uart.c(143): warning:  #177-D: function "Bsp_Uart_ClearRxTimeOut" was declared but never referenced
+  static void Bsp_Uart_ClearRxTimeOut(void)
+..\Bsp\Uart\Bsp_Uart.c(158): warning:  #177-D: function "Bsp_Uart_ClearTxCrcErr" was declared but never referenced
+  static void Bsp_Uart_ClearTxCrcErr(void)
+..\Bsp\Uart\Bsp_Uart.c(164): warning:  #177-D: function "Bsp_Uart_ClearRxCrcErr" was declared but never referenced
+  static void Bsp_Uart_ClearRxCrcErr(void)
+..\Bsp\Uart\Bsp_Uart.c(284): warning:  #177-D: function "Bsp_Uart_ReceviceMessage" was declared but never referenced
+  static void Bsp_Uart_ReceviceMessage(void)
+..\Bsp\Uart\Bsp_Uart.c(316): warning:  #177-D: function "Uart_MemCpyMsg2Array" was declared but never referenced
+  static void Uart_MemCpyMsg2Array(MsgStrcutType *SrcMsgPtr,uint8 *DestarrayPrt)
+..\Bsp\Uart\Bsp_Uart.c(330): warning:  #177-D: function "Uart_MemCpyArray2Msg" was declared but never referenced
+  static void Uart_MemCpyArray2Msg(uint8 *SrcArrayPtr,MsgStrcutType *DestMsgPtr)
+..\Bsp\Uart\Bsp_Uart.c: 15 warnings, 0 errors
+linking...
+Program Size: Code=2264 RO-data=336 RW-data=32 ZI-data=1792  
+".\Objects\Bootloader.axf" - 0 Error(s), 15 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  E:\mywork\myproject\My_Github\Jarvis\Bootloader\WorkSpace\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
