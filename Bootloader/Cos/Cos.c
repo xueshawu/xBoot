@@ -6,7 +6,7 @@
 */
 #include "stm32f10x.h"   /* must include frist for include core_cm3.h */
 #include "Cos.h"
-#include "core_cm3.h"
+
 
 
 
@@ -65,9 +65,7 @@
 
 
 
-#define	CosDisableAllInterrupt() 	do {__set_PRIMASK(0);} while(0)
 
-#define	CosEnableAllInterrupt()		do {__set_PRIMASK(1);}while(0)
 
 
 /*
