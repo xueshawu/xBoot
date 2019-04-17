@@ -51,6 +51,7 @@
 typedef struct
 {
 	uint8 TxStatus;
+	uint8 TxCnt;
 	MsgStrcutType *TxMsgBuf; //这里数据是指针，按照sizeof 应该是（4+1）
 }Uart_TxMsgInfoType;
 
@@ -58,6 +59,7 @@ typedef struct
 typedef struct
 {
 	uint8 RxStatus;
+	uint8 RxCnt;
 	MsgStrcutType *RxMsgBuf;
 }Uart_RxMsgInfoType;
 

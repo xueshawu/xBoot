@@ -50,12 +50,16 @@
 #define		UART_TX_TIMEOUT_FLAG			0x02U
 #define 	UART_TX_FULL_FLAG				0x04U
 #define		UART_TX_CRC_FLAG				0x08U
+#define		UART_TX_START_FLAG				0x10U
+#define		UART_TX_STOP_FLAG				0x20U
 
 
 #define		UART_RX_CONFIRM_FLAG			0x01U
 #define		UART_RX_TIMEOUT_FLAG			0x02U
-#define		UART_RX_FULL_FLAG				0x03U
+#define		UART_RX_FULL_FLAG				0x04U
 #define		UART_RX_CRC_FLAG				0x08U
+#define 	UART_RX_START_FLAG				0x10U
+#define		UART_RX_STOP_FLAG				0x20U
 
 
 
@@ -73,13 +77,18 @@ MsgStrcutType g_UartRxMsgBuf;
 Uart_RxMsgInfoType	g_RxMsgInfo =
 {
 	0x00,
+	0x00,
 	&g_UartRxMsgBuf,
 };
 Uart_TxMsgInfoType	g_TxMsgInfo =
 {
 	0x00,
+	0x00,
 	&g_UartTxMsgBuf,
 };
+
+uint16 g_FristTime = 0;
+uint16 g_LastTime = 0;
 
 
 
@@ -141,6 +150,31 @@ static void Bsp_Uart_SetRxCrcErrFlag(void)
 }
 
 
+static void Bsp_Uart_SetTxStartFlag(void)
+{
+	g_TxMsgInfo.TxStatus |= UART_TX_START_FLAG;
+}
+
+
+static void Bsp_Uart_SetRxStartFlag(void)
+{
+	g_RxMsgInfo.RxStatus |= UART_RX_START_FLAG;
+}
+
+
+static void Bsp_Uart_SetTxStopFlag(void)
+{
+	g_TxMsgInfo.TxStatus |= UART_TX_STOP_FLAG;
+}
+
+
+static void Bsp_Uart_SetRxStopFlag(void)
+{
+	g_RxMsgInfo.RxStatus |= UART_RX_STOP_FLAG;
+}
+
+
+
 static void Bsp_Uart_ClearTxConfirmFlag(void)
 {
 	g_TxMsgInfo.TxStatus &= ~(UART_TX_CONFIRM_FLAG);
@@ -188,6 +222,11 @@ static void Bsp_Uart_ClearRxCrcErrFlag(void)
 
 
 
+static void Bsp_Uart_ClearTxStartFlag(void)
+{
+	g_RxMsgInfo.RxStatus &= ~(UART_RX_START_FLAG);
+}
+
 
 static void Bsp_Uart_ClearTxStatus(void)
 {
@@ -199,6 +238,15 @@ static void Bsp_Uart_ClearRxStatus(void)
 	g_RxMsgInfo.RxStatus = 0x00;
 }
 
+static void Bsp_Uart_ClearTxCounter(void)
+{
+	g_TxMsgInfo.TxCnt = 0x00;
+}
+
+static void Bsp_Uart_ClearRxCounter(void)
+{
+	g_RxMsgInfo.RxCnt = 0x00;
+}
 
 
 static void Bsp_Uart_ClearTxBuf(void)
@@ -335,7 +383,11 @@ static void Bsp_Uart_SendMsg(void)
 
 static void Bsp_Uart_ReceviceMsgCbk(void)
 {
-	
+	static uint8 recvData = 0;
+	if((g_RxMsgInfo.RxStatus & UART_RX_START_FLAG) == 0) //未收到数据
+	{
+		recvData = USART_ReceiveData(USART1);
+	}
 }
 
 
@@ -388,10 +440,8 @@ void Bsp_Uart_Init(void)
 
 void Bsp_Uart_RxMainFunction(void) 
 {
-	uint8 frist_time = 0;
-	uint8 last_time = 0;
-	uint8 length = 0;
-	length = sizeof(MsgStrcutType);	
+
+
 	
 }
 
@@ -418,11 +468,12 @@ void Bsp_Uart_TxMainFunction(void)
 			
 			if(Bsp_Uart_CheckTxIsTimeout(frist_time,last_time))
 			{
-				Bsp_Uart_SetTxTimeout(); //TODO 如果发生TxTimeout 应该怎么处理？
+				Bsp_Uart_SetTxTimeoutFlag(); //TODO 如果发生TxTimeout 应该怎么处理,
 			}
 			else
 			{
-				Bsp_Uart_ClearTxConfirm();
+				Bsp_Uart_ClearTxConfirmFlag();
+				Bsp_Uart_ClearTxBufFullFlag(void)
 				
 			}
 		}
@@ -446,7 +497,7 @@ Uart_StdType Bsp_Uart_TransmitReq(MsgStrcutType *Message)
 		return UART_TX_BUFISFULL;
 	}
 	Uart_MemCpy(Message,g_TxMsgInfo.TxMsgBuf,length);
-	Bsp_Uart_SetTxConfirm();
+	Bsp_Uart_SetTxConfirmFlag();
 	return UART_OK;
 	
 }
@@ -464,7 +515,7 @@ Uart_StdType Bsp_Uart_ReceiveReq(MsgStrcutType *Message)
 		return UART_RX_BUFISEMPTY;
 	}
 	Uart_MemCpy(g_RxMsgInfo.RxMsgBuf,Message,length);
-	Bsp_Uart_SetRxConfirm();
+	Bsp_Uart_SetRxConfirmFlag();
 	return UART_OK;
 }
 
