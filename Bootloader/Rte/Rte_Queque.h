@@ -35,7 +35,7 @@ typedef struct
 
 typedef boolean Queque_Bool;
 typedef uint8	Queque_StdRet;
-typedef uint16	Queque_EleType;
+typedef uint8	Queque_EleType;
 
 
 

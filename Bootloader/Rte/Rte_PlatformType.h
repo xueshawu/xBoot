@@ -43,6 +43,7 @@ typedef unsigned long long int uint64;
 typedef long long int sint64;
 typedef float float32;
 typedef double	float64;
+typedef uint8 Std_ReturnType;
 
 
 

@@ -17,7 +17,6 @@ typedef struct
 	uint16 MsgID;
 	uint8 MsgData[MESSAGE_LENGTH];
 	uint16 MsgCrc;
-	uint16 EndFrame;//0x0D0A
 }MsgStrcutType;  //必须四字节对齐，不足的需要补齐
 
 

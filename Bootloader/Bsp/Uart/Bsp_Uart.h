@@ -73,9 +73,12 @@ typedef struct
 *********************************************************************************************************
 */
 
-extern void Bsp_Uart_Init(void);
-extern void Bsp_Uart_RxMainFunction(void);
-extern void Bsp_Uart_TxMainFunction(void);
+extern void Uart_Init(void);
+extern void Uart_RxMainFunction(void);
+extern void Uart_TxMainFunction(void);
+extern void Uart_StdType Uart_TransmitReq(MsgStrcutType *Message);
+extern Uart_StdType Bsp_Uart_ReceiveReq(MsgStrcutType *Message);
+
 
 
 

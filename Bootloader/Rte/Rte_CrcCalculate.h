@@ -18,12 +18,6 @@
  */
 
 
-#define		CRC_OK			0
-#define		CRC_PARAM		1
-#define		CRC_LENGTH		2
-
-
-#define		CRC_NULL_PTR		NULL_PTR
 
 /*
 *********************************************************************************************************
@@ -31,42 +25,25 @@
 *********************************************************************************************************
 */	
 
-typedef uint8	Crc_StdType;
+
 
 /*
 *********************************************************************************************************
 *                                         FUNCTION PROTOTYPES
 *********************************************************************************************************
 */
-extern Crc_StdType Rte_Crc_CalculateCRC8(const Crc_StdType *Crc_DataPtr,
-										 uint32 Crc_Length,
-										 uint8 *Crc_Crc8Code
-										 );
 
+uint8 Crc_CalculateCRC8(const uint8* Crc_DataPtr, uint32 CRC_Length, 
+								uint8 Crc_StartValue8, boolean Crc_IsFirstCall);
 
-extern Crc_StdType Rte_Crc_CalculateCRC16(const Crc_StdType *Crc_DataPtr,
-										 uint32 Crc_Length,
-										 uint16 *Crc_Crc16Code
-										 );
+uint8 Crc_CalculateCRC8H2F(const uint8* Crc_DataPtr, uint32 CRC_Length, 
+									 uint8 Crc_StartValue8, boolean Crc_IsFirstCall);
 
+uint16 Crc_CalculateCRC16(const uint8* Crc_DataPtr, uint32 CRC_Length, 
+								   uint16 Crc_StartValue16, boolean Crc_IsFirstCall);
 
-extern Crc_StdType Rte_Crc_CalculateCRC32(const Crc_StdType *Crc_DataPtr,
-										  uint32 Crc_Length,
-										  uint32 *Crc_Crc32Code
-										 );
-
-
-
-
-
-
-
-
-
-
-
-
-
+uint32 Crc_CalculateCRC32(const uint8* Crc_DataPtr, uint32 CRC_Length, 
+									uint32 Crc_StartValue32, boolean Crc_IsFirstCall);
 
 
 #endif

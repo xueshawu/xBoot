@@ -47,15 +47,16 @@ typedef uint16	Queque_EleType;
 *                                         FUNCTION PROTOTYPES
 *********************************************************************************************************
 */
-extern Queque_StdRet UartQueque_Insert(Queque_T *queque,Queque_EleType element);
-extern Queque_StdRet UartQueque_Push(Queque_T *queque,Queque_EleType *element);
-extern Queque_StdRet UartQueque_Delete(Queque_T *queque);
-extern Queque_StdRet UartQueque_Clear(Queque_T *queque);
-extern Queque_StdRet UartQueque_IsEmpty(Queque_T *queque);
-extern Queque_StdRet UartQueque_IsFull(Queque_T *queque);
-extern Queque_StdRet UartQueque_GetLength(Queque_T *queque);
-extern Queque_StdRet UartQueque_GetHead(Queque_T *queque,Queque_EleType *element);
-extern Queque_StdRet UartQueque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elementBuf);
+extern Queque_StdRet Uart_Queque_Init(Queque_T *queque);
+extern Queque_StdRet Uart_Queque_Insert(Queque_T *queque,Queque_EleType element);
+extern Queque_StdRet Uart_Queque_Push(Queque_T *queque,Queque_EleType *element);
+extern Queque_StdRet Uart_Queque_Delete(Queque_T *queque);
+extern Queque_StdRet Uart_Queque_Clear(Queque_T *queque);
+extern Queque_StdRet Uart_Queque_IsEmpty(Queque_T *queque);
+extern Queque_StdRet Uart_Queque_IsFull(Queque_T *queque);
+extern Queque_StdRet Uart_Queque_GetLength(Queque_T *queque);
+extern Queque_StdRet Uart_Queque_GetHead(Queque_T *queque,Queque_EleType *element);
+extern Queque_StdRet Uart_Queque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elementBuf);
 
 
 

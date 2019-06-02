@@ -40,9 +40,6 @@ static void Gpio_RunningLamp_Init(void)
 void Bsp_Gpio_Init(void)
 {
 	Dio_ChannelType chn = GPIOFSM_INIT;
-	/*
-	RCC_AHBPeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-	RCC_AHBPeriphClockCmd(RCC_APB2Periph_GPIOE, ENABLE);*/
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOE, ENABLE);
 	while(chn != GPIOFSM_PENDING )
 	{
