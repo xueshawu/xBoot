@@ -1,5 +1,5 @@
 #ifndef _RTE_PLATFORMTYPE_H
-
+#include "Compiler.h"
 
 #define _RTE_PLATFORMTYPE_H
 
