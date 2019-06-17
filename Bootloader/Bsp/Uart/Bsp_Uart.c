@@ -183,155 +183,155 @@ static void Uart_MemCpyArray2Msg(uint8 *SrcArrayPtr,MsgStrcutType *DestMsgPtr)
 
 
 
-static void Uart_SetTxConfirmFlag(void)
+static inline void Uart_SetTxConfirmFlag(void)
 {
 	g_TxMsgInfo.TxStatus |= UART_TX_CONFIRM_FLAG;
 }
 
-static void Uart_SetRxConfirmFlag(void)
+static inline void Uart_SetRxConfirmFlag(void)
 {
 	g_RxMsgInfo.RxStatus |= UART_RX_CONFIRM_FLAG;
 }
 
 
-static void Uart_SetTxTimeoutFlag(void)
+static inline void Uart_SetTxTimeoutFlag(void)
 {
 	g_TxMsgInfo.TxStatus |= UART_TX_TIMEOUT_FLAG;
 }
 
-static void Uart_SetRxTimeoutFlag(void)
+static inline void Uart_SetRxTimeoutFlag(void)
 {
 	g_RxMsgInfo.RxStatus |= UART_RX_TIMEOUT_FLAG;
 }
 
-static void Uart_SetTxBufFullFlag(void)
+static inline void Uart_SetTxBufFullFlag(void)
 {
 	g_TxMsgInfo.TxStatus |= UART_TX_FULL_FLAG;
 }
 
-static void Uart_SetRxBufFullFlag(void)
+static inline void Uart_SetRxBufFullFlag(void)
 {
 	g_RxMsgInfo.RxStatus |= UART_RX_FULL_FLAG;
 }
 
-static void Uart_SetTxCrcErrFlag(void)
+static inline void Uart_SetTxCrcErrFlag(void)
 {
 	g_TxMsgInfo.TxStatus |= UART_TX_CRC_FLAG;
 }
 
 
-static void Uart_SetRxCrcErrFlag(void)
+static inline void Uart_SetRxCrcErrFlag(void)
 {
 	g_RxMsgInfo.RxStatus |= UART_RX_CRC_FLAG;
 }
 
 
-static void Uart_SetTxStartFlag(void)
+static inline void Uart_SetTxStartFlag(void)
 {
 	g_TxMsgInfo.TxStatus |= UART_TX_START_FLAG;
 }
 
 
-static void Uart_SetRxStartFlag(void)
+static inline void Uart_SetRxStartFlag(void)
 {
 	g_RxMsgInfo.RxStatus |= UART_RX_START_FLAG;
 }
 
 
-static void Uart_SetTxStopFlag(void)
+static inline void Uart_SetTxStopFlag(void)
 {
 	g_TxMsgInfo.TxStatus |= UART_TX_STOP_FLAG;
 }
 
 
-static void Uart_SetRxStopFlag(void)
+static inline void Uart_SetRxStopFlag(void)
 {
 	g_RxMsgInfo.RxStatus |= UART_RX_STOP_FLAG;
 }
 
 
 
-static void Uart_ClearTxConfirmFlag(void)
+static inline void Uart_ClearTxConfirmFlag(void)
 {
 	g_TxMsgInfo.TxStatus &= ~(UART_TX_CONFIRM_FLAG);
 }
 
 
-static void Uart_ClearRxConfirmFlag(void)
+static inline void Uart_ClearRxConfirmFlag(void)
 {
 	g_RxMsgInfo.RxStatus &= ~(UART_RX_CONFIRM_FLAG);
 }
 
 
-static void Uart_ClearTxTimeOutFlag(void)
+static inline void Uart_ClearTxTimeOutFlag(void)
 {
 	g_TxMsgInfo.TxStatus &= ~(UART_TX_TIMEOUT_FLAG);
 }
 
-static void Uart_ClearRxTimeOutFlag(void)
+static inline void Uart_ClearRxTimeOutFlag(void)
 {
 	g_RxMsgInfo.RxStatus &= ~(UART_RX_TIMEOUT_FLAG);
 }
 
-static void Uart_ClearTxBufFullFlag(void)
+static inline void Uart_ClearTxBufFullFlag(void)
 {
 	g_TxMsgInfo.TxStatus &= ~(UART_TX_FULL_FLAG);
 }
 
 
-static void Uart_ClearRxBufFullFlag(void)
+static inline void Uart_ClearRxBufFullFlag(void)
 {
 	g_RxMsgInfo.RxStatus &= ~(UART_RX_FULL_FLAG);
 }
 
 
-static void Uart_ClearTxCrcErrFlag(void)
+static inline void Uart_ClearTxCrcErrFlag(void)
 {
 	g_TxMsgInfo.TxStatus &= ~(UART_TX_CRC_FLAG);
 }
 
 
-static void Uart_ClearRxCrcErrFlag(void)
+static inline void Uart_ClearRxCrcErrFlag(void)
 {
 	g_RxMsgInfo.RxStatus &= ~(UART_RX_CRC_FLAG);
 }
 
 
 
-static void Uart_ClearTxStartFlag(void)
+static inline void Uart_ClearTxStartFlag(void)
 {
 	g_RxMsgInfo.RxStatus &= ~(UART_RX_START_FLAG);
 }
 
 
-static void Uart_ClearTxStatus(void)
+static inline void Uart_ClearTxStatus(void)
 {
 	g_TxMsgInfo.TxStatus = 0x00;
 }
 
-static void Uart_ClearRxStatus(void)
+static inline void Uart_ClearRxStatus(void)
 {
 	g_RxMsgInfo.RxStatus = 0x00;
 }
 
-static void Uart_ClearTxCounter(void)
+static inline void Uart_ClearTxCounter(void)
 {
 	g_TxMsgInfo.TxCnt = 0x00;
 }
 
-static void Uart_ClearRxCounter(void)
+static inline void Uart_ClearRxCounter(void)
 {
 	g_RxMsgInfo.RxCnt = 0x00;
 }
 
 
-static void Uart_ClearTxBuf(void)
+static inline void Uart_ClearTxBuf(void)
 {
 	Uart_MemSet(g_TxMsgInfo.TxMsgBuf,0x00,MESSAGE_LENGTH);
 }
 
 
-static void Uart_ClearRxBuf(void)
+static inline void Uart_ClearRxBuf(void)
 {
 	Uart_MemSet(g_RxMsgInfo.RxMsgBuf,0x00,MESSAGE_LENGTH);
 }
@@ -340,36 +340,27 @@ static void Uart_ClearRxBuf(void)
 
 static Uart_Bool Uart_CheckRxBufIsEmpty(void)
 {
-	if(g_RxMsgInfo.RxStatus & UART_RX_FULL_FLAG)
-	{
+	if(g_RxMsgInfo.RxStatus & UART_RX_FULL_FLAG) {
 		return UART_FALSE;
-	}
-	else
-	{
+	} else{
 		return UART_TRUE;
 	}
 }
 
 static Uart_Bool Uart_CheckTxBufIsFull(void)
 {
-	if(g_TxMsgInfo.TxStatus & UART_TX_FULL_FLAG)
-	{
+	if(g_TxMsgInfo.TxStatus & UART_TX_FULL_FLAG) {
 		return UART_TRUE;
-	}
-	else
-	{
+	} else {
 		return UART_FALSE;
 	}
 }
 
 static Uart_Bool Uart_CheckTxIsTimeout(uint8 fristTime,uint8 lastTime)
 {
-	if((lastTime - fristTime) > TX_TIMEOUT) //TODO 这里可能会溢出，导致判断失败，如何规避？？？ g_SysCounter 为16位数据，节拍为1MS
-	{
+	if((lastTime - fristTime) > TX_TIMEOUT) {
 		return UART_TRUE;
-	}
-	else
-	{
+	} else {
 		return UART_FALSE;
 	}
 }
@@ -379,12 +370,9 @@ static Uart_Bool Uart_CheckTxIsTimeout(uint8 fristTime,uint8 lastTime)
 
 static Uart_Bool Uart_CheckRxIsTimeout(uint8 fristTime,uint8 lastTime)
 {
-	if((lastTime - fristTime) > TX_TIMEOUT)
-	{
+	if((lastTime - fristTime) > TX_TIMEOUT){
 		return UART_TRUE;
-	}
-	else
-	{
+	} else {
 		return UART_FALSE;
 	}	
 }
@@ -394,10 +382,8 @@ static Uart_Bool Uart_CheckRxIsTimeout(uint8 fristTime,uint8 lastTime)
 static Uart_Bool Uart_CheckTxMsgID(uint16 id)
 {
 	uint8 loopcnt;
-	for(loopcnt=0;loopcnt<UART_ID_MAX;loopcnt++)
-	{
-		if(id == g_TxMessageIDTable[loopcnt])
-		{
+	for(loopcnt=0;loopcnt<UART_ID_MAX;loopcnt++) {
+		if(id == g_TxMessageIDTable[loopcnt]) {
 			return UART_TRUE;
 		}
 	}
@@ -407,10 +393,8 @@ static Uart_Bool Uart_CheckTxMsgID(uint16 id)
 static Uart_Bool Uart_CheckRxMsgID(uint16 id)
 {
 	uint8 loopcnt;
-	for(loopcnt=0;loopcnt<UART_ID_MAX;loopcnt++)
-	{
-		if(id == g_RxMessageIDTable[loopcnt])
-		{
+	for(loopcnt=0;loopcnt<UART_ID_MAX;loopcnt++) {
+		if(id == g_RxMessageIDTable[loopcnt]) {
 			return UART_TRUE;
 		}
 	}
@@ -425,15 +409,12 @@ static void Uart_SendMsg(void)
 	uint8 MemCpyCnt = 0;
 	uint8 SendCnt = 0;
 	uint8 *BufPtr = (uint8 *)g_RxMsgInfo.RxMsgBuf;
-	for(MemCpyCnt =0;MemCpyCnt<length;MemCpyCnt++)
-	{
+	for(MemCpyCnt =0;MemCpyCnt<length;MemCpyCnt++) {
 		txbuf[MemCpyCnt] = *BufPtr;
 		BufPtr++;
 	}
-	for(SendCnt=0;SendCnt<length;SendCnt++ )
-	{
-		while((USART1->SR & USART_FLAG_TXE) == UART_FALSE)//Check TXE Flag 在将数据压入DataReg之后，FLAG_TXE 值为 TRUE 需要多久置位，重新置为FALSE需要多久
-		{
+	for(SendCnt=0;SendCnt<length;SendCnt++ ) {
+		while((USART1->SR & USART_FLAG_TXE) == UART_FALSE) {
 			USART1->DR = txbuf[SendCnt];
 		}
 	}
@@ -447,33 +428,22 @@ static void Uart_ReceviceMsgCbk(void)
 	static uint8 recvData = 0;
 	recvData = USART_ReceiveData(USART1);
 	g_RxMsgInfo.RxCnt++;
-	if(g_RxMsgInfo.RxStatus & UART_RX_STOP_FLAG)
-	{
+	if(g_RxMsgInfo.RxStatus & UART_RX_STOP_FLAG) {
 		return;
-	}
-	else if((g_RxMsgInfo.RxStatus & UART_RX_START_FLAG) == 0) //未收到数据
-	{
+	} else if(!(g_RxMsgInfo.RxStatus & UART_RX_START_FLAG)) {
 
 		Uart_SetRxStartFlag();
 		Uart_Enter_Critical();
 		g_FristTime = Uart_GetCounter();
 		Uart_Quit_Critical();
 		Uart_Queque_Insert(&g_Uart_RxQueque,recvData);
-		
-	}
-	else //已经开始收数据了
-	{
-		if(g_RxMsgInfo.RxCnt == sizeof(MsgStrcutType))//数据接收完成
-		{
+	} else {
+		if(g_RxMsgInfo.RxCnt == sizeof(MsgStrcutType)) {
 			Uart_SetRxStopFlag();
-		}
-		if(Uart_CheckRxIsTimeout(g_FristTime, g_LastTime))//接收超时
-		{
+		} else if(Uart_CheckRxIsTimeout(g_FristTime, g_LastTime)) {
 			Uart_SetRxTimeoutFlag();
 			Uart_SetRxStopFlag();
-		}
-		else//接收未完成
-		{
+		} else {
 			Uart_Enter_Critical();
 			g_LastTime = Uart_GetCounter();
 			Uart_Quit_Critical();
@@ -493,7 +463,6 @@ void Bsp_Uart_Init(void)
 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
-
 	gpio_InitConfig.GPIO_Mode = GPIO_Mode_AF_PP;
 	gpio_InitConfig.GPIO_Pin = GPIO_Pin_9;
 	gpio_InitConfig.GPIO_Speed = GPIO_Speed_50MHz;
@@ -503,7 +472,6 @@ void Bsp_Uart_Init(void)
 	gpio_InitConfig.GPIO_Pin = GPIO_Pin_10;
 	gpio_InitConfig.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA, &gpio_InitConfig);
-
 
 	uart_InitConfig.USART_BaudRate = UART_BAUDRATE;
 	uart_InitConfig.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
@@ -519,7 +487,6 @@ void Bsp_Uart_Init(void)
 	nvic_InitConfig.NVIC_IRQChannelCmd = ENABLE;			
 	NVIC_Init(&nvic_InitConfig);	
 
-	
 	USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
 	USART_Cmd(USART1, ENABLE); 
 	
@@ -528,9 +495,7 @@ void Bsp_Uart_Init(void)
 	Uart_ClearRxBuf();
 	Uart_ClearRxStatus();
 	Uart_Queque_Init();
-	
 }
-
 
 void Bsp_Uart_RxMainFunction(void) 
 {
@@ -539,15 +504,12 @@ void Bsp_Uart_RxMainFunction(void)
 	{
 		Uart_Queque_TransmitToBuffer(&g_Uart_RxQueque,buf);
 		Uart_MemCpyArray2Msg(buf,g_RxMsgInfo.RxMsgBuf);
-		if(Uart_CheckRxMsgID(g_RxMsgInfo.RxMsgBuf->MsgID)) //Message ID Check	输出通信矩阵文档
-		{
+		if(Uart_CheckRxMsgID(g_RxMsgInfo.RxMsgBuf->MsgID)) {
 			if()//Check Crc 
 		}
-
 	}
 	
 }
-
 
 void Bsp_Uart_TxMainFunction(void)
 {
@@ -555,29 +517,20 @@ void Bsp_Uart_TxMainFunction(void)
 	uint8 last_time = 0;
 	uint8 length = 0;
 	length = sizeof(MsgStrcutType);
-	if(g_TxMsgInfo.TxStatus & UART_TX_CONFIRM_FLAG) //进入发送环节
-	{
-		if(g_TxMsgInfo.TxStatus & UART_TX_FULL_FLAG) //确认buf有新的数据
-		{
+	if(g_TxMsgInfo.TxStatus & UART_TX_CONFIRM_FLAG) {
+		if(g_TxMsgInfo.TxStatus & UART_TX_FULL_FLAG) {
 			Uart_Enter_Critical()();
 			frist_time = CosGetCounter();
 			Uart_Quit_Critical()();
-			
 			Uart_SendMsg();
-			
 			Uart_Enter_Critical()();
 			last_time = CosGetCounter();
-			Uart_Quit_Critical()();
-			
-			if(Uart_CheckTxIsTimeout(frist_time,last_time))
-			{
+			Uart_Quit_Critical();
+			if(Uart_CheckTxIsTimeout(frist_time,last_time)) {
 				Uart_SetTxTimeoutFlag(); //TODO 如果发生TxTimeout 应该怎么处理,
-			}
-			else
-			{
+			} else {
 				Uart_ClearTxConfirmFlag();
 				Uart_ClearTxBufFullFlag();
-				
 			}
 		}
 	}
@@ -585,36 +538,27 @@ void Bsp_Uart_TxMainFunction(void)
 	
 }
 
-
-
-
 Uart_StdType Uart_TransmitReq(MsgStrcutType *Message)
 {
 	Uart_StdType length = sizeof(MsgStrcutType);
-	if(Message == UART_NULL_PTR)
-	{
+	if(Message == UART_NULL_PTR) {
 		return UART_PARAM;
 	}
-	if(Uart_CheckTxBufIsFull())
-	{
+	if(Uart_CheckTxBufIsFull()) {
 		return UART_TX_BUFISFULL;
 	}
 	Uart_MemCpy(Message,g_TxMsgInfo.TxMsgBuf,length);
 	Uart_SetTxConfirmFlag();
 	return UART_OK;
-	
 }
-
 
 Uart_StdType Bsp_Uart_ReceiveReq(MsgStrcutType *Message)
 {	
 	Uart_StdType length = sizeof(MsgStrcutType);
-	if(Message == UART_NULL_PTR)
-	{
+	if(Message == UART_NULL_PTR) {
 		return UART_PARAM;
 	}
-	if(Uart_CheckRxBufIsEmpty())
-	{
+	if(Uart_CheckRxBufIsEmpty()) {
 		return UART_RX_BUFISEMPTY;
 	}
 	Uart_MemCpy(g_RxMsgInfo.RxMsgBuf,Message,length);
@@ -630,13 +574,10 @@ Uart_StdType Bsp_Uart_ReceiveReq(MsgStrcutType *Message)
 /* 中断Cbk函数 判定帧长度以及是否timeout */
 void USART1_IRQHandler(void)
 {
-	
-	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)//接收中断 
-	{
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
 		Uart_ReceviceMsgCbk();
 	}
 	
-
 }
 
 

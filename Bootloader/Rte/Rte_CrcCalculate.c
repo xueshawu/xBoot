@@ -18,9 +18,10 @@
 
 #if CRC_8H2F_MODE == CRC_8H2F_RUNTIME
 /* For CRC8 SAE-1850 */
-#define CRC8_POLYNOMIAL             0x1D
+#define CRC8_POLYNOMIAL             0x1DU
 /* For CRC8 H2F */
-#define CRC8_H2F_POLYNOMIAL         0x2F
+#define CRC8_H2F_POLYNOMIAL         0x2FU
+#define CRC8_XOR                    0xFFU
 #endif
 
 #define CRC16_CCITT_START_VALUE    0xFFFFU
@@ -364,8 +365,9 @@ static uint32 Crc_CalculateCRC32_TABLE(const uint8* Crc_DataPtr, uint32 Length, 
 
 uint8 Crc_CalculateCRC8(const uint8* Crc_DataPtr, uint32 Crc_Length, uint8 Crc_StartValue8, boolean Crc_IsFirstCall)
 {
-    uint8 initial = 0xFF, xor = 0xFF;
+    uint8 initial = 0xFF;
     uint8 crc = 0x00;
+    uint8 xor = CRC8_XOR;
     if(Crc_DataPtr != CRC_NULL_PTR) {
         crc = Crc_IsFirstCall ? CRC8_START_VALUE : Crc_StartValue8;
     }
@@ -382,8 +384,9 @@ uint8 Crc_CalculateCRC8(const uint8* Crc_DataPtr, uint32 Crc_Length, uint8 Crc_S
 uint8 Crc_CalculateCRC8H2F(const uint8* Crc_DataPtr, uint32 Crc_Length, 
 									 uint8 Crc_StartValue8H2F, boolean Crc_IsFirstCall)
 {
-    uint8 initial = 0xFF, xor = 0xFF;
+    uint8 initial = 0xFF;
     uint8 crc = 0x00;
+    uint8 xor = CRC8_XOR;
     if (Crc_DataPtr != CRC_NULL_PTR) {
         crc = Crc_IsFirstCall ? CRC8_H2F_START_VALUE : Crc_StartValue8H2F;
     }
