@@ -1,36 +1,24 @@
 #ifndef _RTE_PLATFORMTYPE_H
-#include "Compiler.h"
 
 #define _RTE_PLATFORMTYPE_H
 
 #ifndef 	TRUE	
-	#define TRUE		1
-
+#define TRUE		1
 #else 
-	#error "TRUE has been define"
+#error "TRUE has been define"
 #endif
 
 #ifndef FALSE
-	#define FALSE		0
-	
+#define FALSE		0
 #else 
-	#error "FALSE has been define"
+#error "FALSE has been define"
 #endif
 
-
-#ifndef  NULL_PTR
-	#define NULL_PTR	((void *)0)
-
-#else 
-	#error "NULL_PTR has been define"
-
+#ifndef NULL_PTR
+#define NULL_PTR	(void *)0
+#else
+#error  "NULL_PTR has been define"
 #endif
-
-
-
-
-
-
 
 typedef unsigned char boolean;
 typedef unsigned char uint8;

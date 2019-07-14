@@ -30,7 +30,7 @@
 *                                      LOCAL FUNCTION PROTOTYPES
 *********************************************************************************************************
 */
-Queque_StdRet Queque_Insert(Queque_T *queque,Queque_EleType element)
+Queque_StdRet Queque_Insert(QuequeStructType *queque,Queque_EleType element)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -45,8 +45,8 @@ Queque_StdRet Queque_Insert(Queque_T *queque,Queque_EleType element)
 	return QUEQUE_OK;
 	
 }
-//»ñÈ¡¶ÓÁÐµÄÍ·ÔªËØ£¬²¢ÇÒ²åÈëÐÂÔªËØ
-Queque_StdRet Queque_Push(Queque_T *queque,Queque_EleType *element)
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ðµï¿½Í·Ôªï¿½Ø£ï¿½ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ï¿½
+Queque_StdRet Queque_Push(QuequeStructType *queque,Queque_EleType *element)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -66,7 +66,7 @@ Queque_StdRet Queque_Push(Queque_T *queque,Queque_EleType *element)
 }
 
 
-Queque_StdRet Queque_Delete(Queque_T *queque)
+Queque_StdRet Queque_Delete(QuequeStructType *queque)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -82,7 +82,7 @@ Queque_StdRet Queque_Delete(Queque_T *queque)
 
 
 
-Queque_StdRet Queque_Clear(Queque_T *queque)
+Queque_StdRet Queque_Clear(QuequeStructType *queque)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -96,28 +96,28 @@ Queque_StdRet Queque_Clear(Queque_T *queque)
 
 
 
-Queque_Bool  Queque_IsEmpty(Queque_T *queque)
+Queque_Bool  Queque_IsEmpty(QuequeStructType *queque)
 {
 	return (queque->rear + 1)%QUEQUE_SIZE == queque->front;
 }
 
 
 
-Queque_Bool  Queque_IsFull(Queque_T *queque)
+Queque_Bool  Queque_IsFull(QuequeStructType *queque)
 {
 	return (queque->rear + 2)%QUEQUE_SIZE == queque->front;
 }
 
 
 
-Queque_StdRet Queque_Getength(Queque_T *queque)
+Queque_StdRet Queque_Getength(QuequeStructType *queque)
 {
 	return (queque->front );
 }
 
 
 
-Queque_StdRet Queque_GetHead(Queque_T *queque,Queque_EleType *element)
+Queque_StdRet Queque_GetHead(QuequeStructType *queque,Queque_EleType *element)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -131,7 +131,7 @@ Queque_StdRet Queque_GetHead(Queque_T *queque,Queque_EleType *element)
 }
 
 
-Queque_StdRet Queque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elementBuf)
+Queque_StdRet Queque_TransmitToBuffer(QuequeStructType *queque,Queque_EleType *elementBuf)
 {
 	uint8 front_index = queque->front;
 	if(queque == QUEQUE_NULL_PTR)
@@ -142,7 +142,7 @@ Queque_StdRet Queque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elementBu
 	{
 		return QUEQUE_PARAM;
 	}
-	while(front_index != (queque->rear + 2)%QUEQUE_SIZE)//¼ì²é¿Õ
+	while(front_index != (queque->rear + 2)%QUEQUE_SIZE)//ï¿½ï¿½ï¿½ï¿½
 	{
 		*elementBuf = queque->quequeBuf[front_index];
 		elementBuf++;

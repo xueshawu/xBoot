@@ -32,7 +32,7 @@
 *********************************************************************************************************
 */
 
-Queque_StdRet Uart_Queque_Init(Queque_T *queque)
+Queque_StdRet Uart_Queque_Init(QuequeStructType *queque)
 {
 	uint8 loopcnt;
 	queque->front = 1;
@@ -46,7 +46,7 @@ Queque_StdRet Uart_Queque_Init(Queque_T *queque)
 }
 
 
-Queque_StdRet Uart_Queque_Insert(Queque_T *queque,Queque_EleType element)
+Queque_StdRet Uart_Queque_Insert(QuequeStructType *queque,Queque_EleType element)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -62,7 +62,7 @@ Queque_StdRet Uart_Queque_Insert(Queque_T *queque,Queque_EleType element)
 	
 }
 
-Queque_StdRet Uart_Queque_Push(Queque_T *queque,Queque_EleType *element)
+Queque_StdRet Uart_Queque_Push(QuequeStructType *queque,Queque_EleType *element)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -82,7 +82,7 @@ Queque_StdRet Uart_Queque_Push(Queque_T *queque,Queque_EleType *element)
 }
 
 
-Queque_StdRet Uart_Queque_Delete(Queque_T *queque)
+Queque_StdRet Uart_Queque_Delete(QuequeStructType *queque)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -98,7 +98,7 @@ Queque_StdRet Uart_Queque_Delete(Queque_T *queque)
 
 
 
-Queque_StdRet Uart_Queque_Clear(Queque_T *queque)
+Queque_StdRet Uart_Queque_Clear(QuequeStructType *queque)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -112,28 +112,28 @@ Queque_StdRet Uart_Queque_Clear(Queque_T *queque)
 
 
 
-Queque_Bool  Uart_Queque_IsEmpty(Queque_T *queque)
+Queque_Bool  Uart_Queque_IsEmpty(QuequeStructType *queque)
 {
 	return (queque->rear + 1)%QUEQUE_SIZE == queque->front;
 }
 
 
 
-Queque_Bool  Uart_Queque_IsFull(Queque_T *queque)
+Queque_Bool  Uart_Queque_IsFull(QuequeStructType *queque)
 {
 	return (queque->rear + 2)%QUEQUE_SIZE == queque->front;
 }
 
 
 
-Queque_StdRet Uart_Queque_Getength(Queque_T *queque)
+Queque_StdRet Uart_Queque_Getength(QuequeStructType *queque)
 {
 	return (queque->front );
 }
 
 
 
-Queque_StdRet Uart_Queque_GetHead(Queque_T *queque,Queque_EleType *element)
+Queque_StdRet Uart_Queque_GetHead(QuequeStructType *queque,Queque_EleType *element)
 {
 	if(queque == QUEQUE_NULL_PTR)
 	{
@@ -147,7 +147,7 @@ Queque_StdRet Uart_Queque_GetHead(Queque_T *queque,Queque_EleType *element)
 }
 
 
-Queque_StdRet Uart_Queque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elementBuf)
+Queque_StdRet Uart_Queque_TransmitToBuffer(QuequeStructType *queque,Queque_EleType *elementBuf)
 {
 	uint8 front_index = queque->front;
 	if(queque == QUEQUE_NULL_PTR)
@@ -158,7 +158,7 @@ Queque_StdRet Uart_Queque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elem
 	{
 		return QUEQUE_PARAM;
 	}
-	while(front_index != (queque->rear + 2)%QUEQUE_SIZE)//¼ì²é¿Õ
+	while(front_index != (queque->rear + 2)%QUEQUE_SIZE)//ï¿½ï¿½ï¿½ï¿½
 	{
 		*elementBuf = queque->quequeBuf[front_index];
 		elementBuf++;

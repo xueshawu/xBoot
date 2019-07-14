@@ -1,8 +1,6 @@
 .\objects\bl_app.o: ..\App\bl_App.c
 .\objects\bl_app.o: ..\Rte\Rte.h
 .\objects\bl_app.o: ..\Cos\Cos.h
-.\objects\bl_app.o: ..\Rte\Rte_PlatformType.h
-.\objects\bl_app.o: ..\Cos\CosTask.h
 .\objects\bl_app.o: ..\Core\stm32f10x.h
 .\objects\bl_app.o: ..\Core\core_cm3.h
 .\objects\bl_app.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -32,3 +30,5 @@
 .\objects\bl_app.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\objects\bl_app.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\objects\bl_app.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
+.\objects\bl_app.o: ..\Rte\Rte_PlatformType.h
+.\objects\bl_app.o: ..\Cos\CosTask.h

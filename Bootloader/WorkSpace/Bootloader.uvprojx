@@ -402,6 +402,11 @@
               <FileType>1</FileType>
               <FilePath>..\Bsp\Watchdog\Bsp_Watchdog.c</FilePath>
             </File>
+            <File>
+              <FileName>Bsp_Uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Uart\Bsp_Uart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -449,6 +454,13 @@
         </Group>
         <Group>
           <GroupName>IoHwAb</GroupName>
+          <Files>
+            <File>
+              <FileName>IoHwAb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\IoHwAb\IoHwAb.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>Rte</GroupName>

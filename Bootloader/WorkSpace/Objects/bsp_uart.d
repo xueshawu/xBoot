@@ -3,7 +3,6 @@
 .\objects\bsp_uart.o: ..\Bsp\Uart\Bsp_UartType.h
 .\objects\bsp_uart.o: ..\Rte\Rte_PlatformType.h
 .\objects\bsp_uart.o: ..\Cos\Cos.h
-.\objects\bsp_uart.o: ..\Rte\Rte_Queque.h
 .\objects\bsp_uart.o: ..\Core\stm32f10x.h
 .\objects\bsp_uart.o: ..\Core\core_cm3.h
 .\objects\bsp_uart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -33,3 +32,5 @@
 .\objects\bsp_uart.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\objects\bsp_uart.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\objects\bsp_uart.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
+.\objects\bsp_uart.o: ..\Rte\Rte_CrcCalculate.h
+.\objects\bsp_uart.o: ..\Rte\Rte_Queque.h

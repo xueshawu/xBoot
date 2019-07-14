@@ -8,6 +8,7 @@
 *                                            INCLUDE FILES
 *********************************************************************************************************
 */
+#include "stm32f10x.h"
 #include "core_cm3.h"
 #include "Rte_PlatformType.h"
 

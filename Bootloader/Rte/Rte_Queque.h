@@ -30,7 +30,7 @@ typedef struct
 	uint8 front;
 	uint8 rear;
 	uint8 quequeBuf[ARRAY_SIZE];
-}Queque_T;
+}QuequeStructType;
 
 
 typedef boolean Queque_Bool;
@@ -44,15 +44,15 @@ typedef uint8	Queque_EleType;
 *                                         FUNCTION PROTOTYPES
 *********************************************************************************************************
 */
-extern Queque_StdRet Queque_Insert(Queque_T *queque,Queque_EleType element);
-extern Queque_StdRet Queque_Push(Queque_T *queque,Queque_EleType *element);
-extern Queque_StdRet Queque_Delete(Queque_T *queque);
-extern Queque_StdRet Queque_Clear(Queque_T *queque);
-extern Queque_StdRet Queque_IsEmpty(Queque_T *queque);
-extern Queque_StdRet Queque_IsFull(Queque_T *queque);
-extern Queque_StdRet Queque_GetLength(Queque_T *queque);
-extern Queque_StdRet Queque_GetHead(Queque_T *queque,Queque_EleType *element);
-extern Queque_StdRet Queque_TransmitToBuffer(Queque_T *queque,Queque_EleType *elementBuf);
+extern Queque_StdRet Queque_Insert(QuequeStructType *queque,Queque_EleType element);
+extern Queque_StdRet Queque_Push(QuequeStructType *queque,Queque_EleType *element);
+extern Queque_StdRet Queque_Delete(QuequeStructType *queque);
+extern Queque_StdRet Queque_Clear(QuequeStructType *queque);
+extern Queque_StdRet Queque_IsEmpty(QuequeStructType *queque);
+extern Queque_StdRet Queque_IsFull(QuequeStructType *queque);
+extern Queque_StdRet Queque_GetLength(QuequeStructType *queque);
+extern Queque_StdRet Queque_GetHead(QuequeStructType *queque,Queque_EleType *element);
+extern Queque_StdRet Queque_TransmitToBuffer(QuequeStructType *queque,Queque_EleType *elementBuf);
 
 
 

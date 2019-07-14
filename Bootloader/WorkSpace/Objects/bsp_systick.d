@@ -1,7 +1,6 @@
 .\objects\bsp_systick.o: ..\Bsp\SysTick\Bsp_Systick.c
 .\objects\bsp_systick.o: ..\Bsp\SysTick\Bsp_Systick.h
 .\objects\bsp_systick.o: ..\Cos\Cos.h
-.\objects\bsp_systick.o: ..\Rte\Rte_PlatformType.h
 .\objects\bsp_systick.o: ..\Core\stm32f10x.h
 .\objects\bsp_systick.o: ..\Core\core_cm3.h
 .\objects\bsp_systick.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -31,3 +30,4 @@
 .\objects\bsp_systick.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\objects\bsp_systick.o: ..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\objects\bsp_systick.o: ..\STM32F10x_StdPeriph_Driver\inc\misc.h
+.\objects\bsp_systick.o: ..\Rte\Rte_PlatformType.h

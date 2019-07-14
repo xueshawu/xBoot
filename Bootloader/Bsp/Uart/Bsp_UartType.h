@@ -17,7 +17,7 @@ typedef struct
 	uint16 MsgID;
 	uint8 MsgData[MESSAGE_LENGTH];
 	uint16 MsgCrc;
-}MsgStrcutType;  //±ØÐëËÄ×Ö½Ú¶ÔÆë£¬²»×ãµÄÐèÒª²¹Æë
+}MsgStrcutType;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ú¶ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
 
 
 
