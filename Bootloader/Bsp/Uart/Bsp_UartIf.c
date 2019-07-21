@@ -4,7 +4,7 @@
 *********************************************************************************************************
 */
 #include "Bsp_Uart.h"
-#include "UartIf.h"
+#include "Bsp_UartIf.h"
 /*
 *********************************************************************************************************
 *                                        DEFINE LOCAL FLAG
@@ -60,22 +60,24 @@ static uint8 g_UartIfTxMainFsmState = UNINITIAL;
 Uart_StdType UartIf_TxMessage(uint16 MsgIndex,uint8 *pMsgContent)
 {
      if (pMsgContent == NULL_PTR) {
-          return UARTIF_E_NULL
+          return UARTIF_E_NULL;
      }
+     return UARTIF_E_OK;
 }
 Uart_StdType UartIf_RxMessage(uint16 MsgIndex,uint8 *pMsgContent)
 {
      if (pMsgContent == NULL_PTR) {
-          return UARTIF_E_NULL
-     }    
+          return UARTIF_E_NULL;
+     }
+     return UARTIF_E_OK;    
 }
 Uart_StdType UartIf_TxConfirmation(uint16 MsgIndex,uint8 *pMsgContent)
 {
-
+     return UARTIF_E_OK;
 }
 Uart_StdType UartIf_RxIndication(MsgStrcutType *pUartMsgInfoPtr)
 {
-
+     return UARTIF_E_OK;
 }
 void UartIf_RxMainFunction(void)
 {
@@ -93,3 +95,4 @@ void UartIf_DeInit(void)
 {
 
 }
+

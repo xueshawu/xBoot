@@ -22,144 +22,18 @@ Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
 E:\mywork\myproject\My_Github\xBoot\xBoot\Bootloader\WorkSpace\Bootloader.uvprojx
-Project File Date:  03/24/2019
+Project File Date:  07/07/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Bsp_Uart.c...
-..\Bsp\Uart\Bsp_Uart.c(184): warning:  #260-D: explicit type is missing ("int" assumed)
-  static inline void Uart_SetTxConfirmFlag(void)
-..\Bsp\Uart\Bsp_Uart.c(184): error:  #65: expected a ";"
-  static inline void Uart_SetTxConfirmFlag(void)
-..\Bsp\Uart\Bsp_Uart.c(446): warning:  #12-D: parsing restarts here after previous syntax error
-  			g_LastTime = 
-art_GetCounter();
-..\Bsp\Uart\Bsp_Uart.c(447): error:  #169: expected a declaration
-  			
-art_Quit_Critical();
-..\Bsp\Uart\Bsp_Uart.c(448): error:  #79: expected a type specifier
-  			Uart_Queque_Insert(&g_Uart_RxQueque,recvData);
-..\Bsp\Uart\Bsp_Uart.c(448): error:  #20: identifier "recvData" is undefined
-  			Uart_Queque_Insert(&g_Uart_RxQueque,recvData);
-..\Bsp\Uart\Bsp_Uart.c(448): warning:  #77-D: this declaration has no storage class or type specifier
-  			Uart_Queque_Insert(&g_Uart_RxQueque,recvData);
-..\Bsp\Uart\Bsp_Uart.c(450): error:  #169: expected a declaration
-  		}
-..\Bsp\Uart\Bsp_Uart.c(478): warning:  #12-D: parsing restarts here after previous syntax error
-  	uart_InitConfig.USART_StopBits = 
-SART_StopBits_1;
-..\Bsp\Uart\Bsp_Uart.c(479): error:  #77-D: this declaration has no storage class or type specifier
-  	uart_InitConfig.USART_WordLength = USART_WordLength_8b;
-..\Bsp\Uart\Bsp_Uart.c(479): error:  #65: expected a ";"
-  	uart_InitConfig.USART_WordLength = USART_WordLength_8b;
-..\Bsp\Uart\Bsp_Uart.c(480): error:  #79: expected a type specifier
-  	USART_Init(
-SART1, &uart_InitConfig);
-..\Bsp\Uart\Bsp_Uart.c(480): error:  #79: expected a type specifier
-  	USART_Init(
-SART1, &uart_InitConfig);
-..\Bsp\Uart\Bsp_Uart.c(480): warning:  #77-D: this declaration has no storage class or type specifier
-  	USART_Init(
-SART1, &uart_InitConfig);
-..\Bsp\Uart\Bsp_Uart.c(480): error:  #147: declaration is incompatible with "void USART_Init(USART_TypeDef *, USART_InitTypeDef *)" (declared at line 366 of "..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h")
-  	USART_Init(
-SART1, &uart_InitConfig);
-..\Bsp\Uart\Bsp_Uart.c(482): error:  #77-D: this declaration has no storage class or type specifier
-  	nvic_InitConfig.NVIC_IRQChannel = USART1_IRQn;
-..\Bsp\Uart\Bsp_Uart.c(482): error:  #65: expected a ";"
-  	nvic_InitConfig.NVIC_IRQChannel = USART1_IRQn;
-..\Bsp\Uart\Bsp_Uart.c(483): error:  #77-D: this declaration has no storage class or type specifier
-  	nvic_InitConfig.NVIC_IRQChannelPreemptionPriority=3 ;
-..\Bsp\Uart\Bsp_Uart.c(483): error:  #65: expected a ";"
-  	nvic_InitConfig.NVIC_IRQChannelPreemptionPriority=3 ;
-..\Bsp\Uart\Bsp_Uart.c(484): error:  #77-D: this declaration has no storage class or type specifier
-  	nvic_InitConfig.NVIC_IRQChannelSubPriority = 3;		
-..\Bsp\Uart\Bsp_Uart.c(484): error:  #65: expected a ";"
-  	nvic_InitConfig.NVIC_IRQChannelSubPriority = 3;		
-..\Bsp\Uart\Bsp_Uart.c(485): error:  #77-D: this declaration has no storage class or type specifier
-  	nvic_InitConfig.NVIC_IRQChannelCmd = ENABLE;			
-..\Bsp\Uart\Bsp_Uart.c(485): error:  #65: expected a ";"
-  	nvic_InitConfig.NVIC_IRQChannelCmd = ENABLE;			
-..\Bsp\Uart\Bsp_Uart.c(486): error:  #79: expected a type specifier
-  	NVIC_Init(&nvic_InitConfig);	
-..\Bsp\Uart\Bsp_Uart.c(486): warning:  #77-D: this declaration has no storage class or type specifier
-  	NVIC_Init(&nvic_InitConfig);	
-..\Bsp\Uart\Bsp_Uart.c(486): error:  #147: declaration is incompatible with "void NVIC_Init(NVIC_InitTypeDef *)" (declared at line 197 of "..\STM32F10x_StdPeriph_Driver\inc\misc.h")
-  	NVIC_Init(&nvic_InitConfig);	
-..\Bsp\Uart\Bsp_Uart.c(488): error:  #79: expected a type specifier
-  	USART_ITConfig(
-SART1, USART_IT_RXNE, ENABLE);
-..\Bsp\Uart\Bsp_Uart.c(488): error:  #79: expected a type specifier
-  	USART_ITConfig(
-SART1, 
-SART_IT_RXNE, ENABLE);
-..\Bsp\Uart\Bsp_Uart.c(488): error:  #757: constant "ENABLE" is not a type name
-  	USART_ITConfig(
-SART1, 
-SART_IT_RXNE, ENABLE);
-..\Bsp\Uart\Bsp_Uart.c(488): warning:  #77-D: this declaration has no storage class or type specifier
-  	USART_ITConfig(
-SART1, 
-SART_IT_RXNE, ENABLE);
-..\Bsp\Uart\Bsp_Uart.c(488): error:  #147: declaration is incompatible with "void USART_ITConfig(USART_TypeDef *, uint16_t, FunctionalState)" (declared at line 371 of "..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h")
-  	USART_ITConfig(
-SART1, 
-SART_IT_RXNE, ENABLE);
-..\Bsp\Uart\Bsp_Uart.c(489): error:  #79: expected a type specifier
-  	USART_Cmd(
-SART1, ENABLE); 
-..\Bsp\Uart\Bsp_Uart.c(489): error:  #757: constant "ENABLE" is not a type name
-  	USART_Cmd(
-SART1, ENABLE); 
-..\Bsp\Uart\Bsp_Uart.c(489): warning:  #77-D: this declaration has no storage class or type specifier
-  	USART_Cmd(
-SART1, ENABLE); 
-..\Bsp\Uart\Bsp_Uart.c(489): error:  #147: declaration is incompatible with "void USART_Cmd(USART_TypeDef *, FunctionalState)" (declared at line 370 of "..\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h")
-  	USART_Cmd(
-SART1, ENABLE); 
-..\Bsp\Uart\Bsp_Uart.c(491): warning:  #1295-D: Deprecated declaration Uart_ClearTxBuf - give arg types
-  	Uart_ClearTxBuf();
-..\Bsp\Uart\Bsp_Uart.c(491): warning:  #77-D: this declaration has no storage class or type specifier
-  	Uart_ClearTxBuf();
-..\Bsp\Uart\Bsp_Uart.c(492): warning:  #1295-D: Deprecated declaration Uart_ClearTxStatus - give arg types
-  	Uart_ClearTxStatus();
-..\Bsp\Uart\Bsp_Uart.c(492): warning:  #77-D: this declaration has no storage class or type specifier
-  	Uart_ClearTxStatus();
-..\Bsp\Uart\Bsp_Uart.c(493): warning:  #1295-D: Deprecated declaration Uart_ClearRxBuf - give arg types
-  	Uart_ClearRxBuf();
-..\Bsp\Uart\Bsp_Uart.c(493): warning:  #77-D: this declaration has no storage class or type specifier
-  	Uart_ClearRxBuf();
-..\Bsp\Uart\Bsp_Uart.c(494): warning:  #1295-D: Deprecated declaration Uart_ClearRxStatus - give arg types
-  	Uart_ClearRxStatus();
-..\Bsp\Uart\Bsp_Uart.c(494): warning:  #77-D: this declaration has no storage class or type specifier
-  	Uart_ClearRxStatus();
-..\Bsp\Uart\Bsp_Uart.c(495): warning:  #1295-D: Deprecated declaration Uart_Queque_Init - give arg types
-  	Uart_Queque_Init();
-..\Bsp\Uart\Bsp_Uart.c(495): warning:  #77-D: this declaration has no storage class or type specifier
-  	Uart_Queque_Init();
-..\Bsp\Uart\Bsp_Uart.c(496): error:  #169: expected a declaration
-  }
-..\Bsp\Uart\Bsp_Uart.c(594): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
-..\Bsp\Uart\Bsp_Uart.c(130): warning:  #177-D: function "Uart_MemSet" was declared but never referenced
-  static void Uart_MemSet(void *buffer, uint8 c, uint16 count)
-..\Bsp\Uart\Bsp_Uart.c(142): warning:  #177-D: function "Uart_MemCpy" was declared but never referenced
-  static void Uart_MemCpy(MsgStrcutType *SrcPtr,MsgStrcutType *DestPtr,uint8 Length)
-..\Bsp\Uart\Bsp_Uart.c(155): warning:  #177-D: function "Uart_MemCpyMsg2Array" was declared but never referenced
-  static void Uart_MemCpyMsg2Array(MsgStrcutType *SrcMsgPtr,uint8 *DestarrayPrt)
-..\Bsp\Uart\Bsp_Uart.c(169): warning:  #177-D: function "Uart_MemCpyArray2Msg" was declared but never referenced
-  static void Uart_MemCpyArray2Msg(uint8 *SrcArrayPtr,MsgStrcutType *DestMsgPtr)
-..\Bsp\Uart\Bsp_Uart.c(184): warning:  #177-D: variable "inline" was declared but never referenced
-  static inline void Uart_SetTxConfirmFlag(void)
-..\Bsp\Uart\Bsp_Uart.c: 24 warnings, 28 errors
-".\Objects\Bootloader.axf" - 28 Error(s), 24 Warning(s).
+".\Objects\Bootloader.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   E:\mywork\myproject\My_Github\xBoot\xBoot\Bootloader\WorkSpace\RTE
   C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

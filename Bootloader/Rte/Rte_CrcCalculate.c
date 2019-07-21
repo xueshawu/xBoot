@@ -177,8 +177,8 @@ static uint8 Crc_CalculateCRC8_RUNTIME(const uint8* Data, uint32 Length, uint8 C
     uint8 bit;
     uint8 topbit = 0x80;
     uint8 poly = CRC8_POLYNOMIAL;
-
-    for (uint32 byte = 0; byte < Length; byte++) {
+    uint32 byte = 0;
+    for (byte = 0; byte < Length; byte++) {
         remainder ^= *(Data++);
         for (bit = 8; bit > 0; bit--) {
             if (remainder & topbit) {
@@ -211,6 +211,7 @@ static uint8 Crc_CalculateCRC8_TABLE(const uint8* Crc_DataPtr, uint32 Length, ui
 static uint8 Crc_CalculateCRC8_HARDWARE(const uint8* Crc_DataPtr, uint32 Length, uint8 Crc)
 {
     /* 请使用对应的硬件CRC接口 */
+	return Crc;
 }
 #endif 
 
@@ -223,7 +224,8 @@ static uint8 Crc_CalculateCRC8H2F_RUNTIME(const uint8* Crc_DataPtr, uint32 Lengt
     uint8 bit;
     uint8 topbit = 0x80;
     uint8 poly = CRC8_H2F_POLYNOMIAL;
-    for (uint32 byte = 0; byte < Length; byte++) {
+	uint32 byte = 0;
+    for(byte = 0; byte < Length; byte++) {
         remainder ^= *(Crc_DataPtr++);
         for (bit = 8; bit > 0; bit--) {
             if (remainder & topbit) {
@@ -256,8 +258,9 @@ static uint16 Crc_CalculateCRC16_RUNTIME(const uint8* Crc_DataPtr, uint32 Length
     uint16 remainder = Crc;
     uint8  bit;
     uint16 topbit = 0x8000;
-    uint16 poly = CRC16_CCITT_POLYNOMIAL；
-    for (uint32 byte = 0; byte < Length; byte++) {
+    uint16 poly = CRC16_CCITT_POLYNOMIAL;
+	uint32 byte = 0;
+    for (byte = 0; byte < Length; byte++) {
         remainder ^= (*(Crc_DataPtr++) << 8);
         for (bit = 8; bit > 0; bit--) {
             if (remainder & topbit) {
@@ -294,7 +297,7 @@ uint16 Crc_CalculateCRC16_HARDWARE(const uint8* Crc_DataPtr, uint32 Length, uint
 
 
 #if (CRC_32_MODE == CRC_32_RUNTIME)
-static INLINE uint32 reflectResult(uint32 data)
+static uint32 reflectResult(uint32 data)
 {
     uint32 reflection = 0x00000000U;
     uint8 bit;
@@ -307,7 +310,7 @@ static INLINE uint32 reflectResult(uint32 data)
     return reflection;
 }
 
-static INLINE uint8 reflectInData(uint8 data)
+static uint8 reflectInData(uint8 data)
 {
     uint8 reflection = 0x00;
     uint8 bit;
@@ -326,9 +329,10 @@ static uint32 Crc_CalculateCRC32_RUNTIME(const uint8* Data, uint32 Length, uint3
 {
     uint32 remainder = Crc;
     uint8  bit;
+	uint32 byte;
     uint32  topbit = 0x80000000U;
-    for (uint32 byte = 0; byte < nBytes; byte++) {
-        remainder ^= (reflectInData(*(message++)) << 24);
+    for (byte = 0; byte < Length; byte++) {
+        remainder ^= (reflectInData(*(Data++)) << 24);
         for (bit = 8; bit > 0; bit--) {
             if (remainder & topbit) {
                 remainder = (remainder << 1) ^ CRC32_POLYNOMIAL;
@@ -346,7 +350,8 @@ static uint32 Crc_CalculateCRC32_RUNTIME(const uint8* Data, uint32 Length, uint3
 #if (CRC_32_MODE == CRC_32_RUNTIME)
 static uint32 Crc_CalculateCRC32_TABLE(const uint8* Crc_DataPtr, uint32 Length, uint32 Crc)
 {
-    for( uint32 loopCnt = 0; loopCnt < Length; loopCnt++) {
+	uint32 loopCnt;
+    for(loopCnt = 0; loopCnt < Length; loopCnt++) {
         Crc = ((Crc >> 8) & 0x00FFFFFFU) ^ CRC32TABLE[(Crc ^ *Crc_DataPtr) & 0xFFU];
         Crc_DataPtr++;
     }
@@ -391,7 +396,7 @@ uint8 Crc_CalculateCRC8H2F(const uint8* Crc_DataPtr, uint32 Crc_Length,
         crc = Crc_IsFirstCall ? CRC8_H2F_START_VALUE : Crc_StartValue8H2F;
     }
 #if (CRC_8H2F_MODE == CRC_8_RUNTIME)
-    crc = Crc_CalculateCRC8H2F_RUNTIME(Crc_DataPtr, Crc_Length, crc, CRC8_H2F_POLYNOMIAL);
+    crc = Crc_CalculateCRC8H2F_RUNTIME(Crc_DataPtr, Crc_Length, crc);
 #elif (CRC_8H2F_MODE == CRC_8_TABLE)
     crc = Crc_CalculateCRC8H2F_TABLE(Crc_DataPtr, Crc_Length, crc);
 #else
@@ -404,8 +409,8 @@ uint8 Crc_CalculateCRC8H2F(const uint8* Crc_DataPtr, uint32 Crc_Length,
 
 uint16 Crc_CalculateCRC16(const uint8* Crc_DataPtr, uint32 Crc_Length, uint16 Crc_StartValue16, boolean Crc_IsFirstCall)
 {
-    uint16 initial = 0xFFFF；
-    uint6 xor = CRC16_CCITT_XOR;
+    uint16 initial = 0xFFFF;
+    uint16 xor = CRC16_CCITT_XOR;
     uint16 crc = 0x0000;
     if(Crc_DataPtr != CRC_NULL_PTR) {
          crc = Crc_IsFirstCall ? CRC16_CCITT_START_VALUE : Crc_StartValue16;       
@@ -429,7 +434,7 @@ uint32 Crc_CalculateCRC32(const uint8* Crc_DataPtr, uint32 Crc_Length, uint32 Cr
     if(Crc_DataPtr != CRC_NULL_PTR) {
         crc = Crc_IsFirstCall ? CRC32_START_VALUE : Crc_StartValue32;       
     }
-    crc = reflect32(crc);
+    crc = reflectResult(crc);
 #if (CRC_32_MODE == CRC_32_RUNTIME)
     crc = Crc_CalculateCRC32_RUNTIME(Crc_DataPtr, Crc_Length, crc);
 #elif (CRC_32_MODE == CRC_32_TABLE)
@@ -437,7 +442,7 @@ uint32 Crc_CalculateCRC32(const uint8* Crc_DataPtr, uint32 Crc_Length, uint32 Cr
 #else
     #error "CRC calculation in Hardware not supported"
 #endif
-  return reflect32(crc) ^ xor;    
+  return reflectResult(crc) ^ xor;    
 }    
 
 

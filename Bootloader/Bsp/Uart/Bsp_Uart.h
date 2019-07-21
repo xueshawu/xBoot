@@ -63,7 +63,7 @@ extern void Uart_TxMainFunction(void);
 extern void Uart_RxIndication(void);
 extern void Uart_TxConfirm(void);
 extern Uart_StdType Uart_TransmitReq(uint16 messageId,uint8 *pMessageContent);
-extern Uart_StdType Bsp_Uart_ReceiveReq(uint16 messageId, *pMessageContent);
+extern Uart_StdType Bsp_Uart_ReceiveReq(uint16 messageId, uint8 *pMessageContent);
 
 /*
 *********************************************************************************************************

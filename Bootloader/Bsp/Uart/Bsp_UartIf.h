@@ -23,7 +23,7 @@ typedef struct
  ********************************************************************************************************
  */
 #define UARTIF_E_OK                     0x0
-#define UARTIF_E_OK                     0x1
+#define UARTIF_E_NOTOK                  0x1
 #define UARTIF_E_NULL                   0x2
 #define UARTIF_E_ID                     0x3
 /*
@@ -39,3 +39,4 @@ extern void UartIf_RxMainFunction(void);
 extern void UartIf_TxMainFunction(void);
 extern void UartIf_Init(void);
 #endif
+
