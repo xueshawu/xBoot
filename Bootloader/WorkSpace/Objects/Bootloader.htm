@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Bootloader.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Bootloader.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Sun Jul 21 11:29:55 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Tue Aug 13 09:14:47 2019
 <BR><P>
 <H3>Maximum Stack Usage =         48 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -469,8 +469,8 @@ Global Symbols
 <P><STRONG><a name="[4d]"></a>App_Task_100Ms</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, costask.o(i.App_Task_100Ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = App_Task_100Ms &rArr; IoHwAb_FaultLamp_MainFunction &rArr; Bsp_Gpio_Dio_Wrtie
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IoHwAb_FaultLamp_MainFunction
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IoHwAb_FaultLamp_MainFunction
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> costask.o(i.App_Task_Init)
 </UL>
@@ -479,16 +479,16 @@ Global Symbols
 <P><STRONG><a name="[4b]"></a>App_Task_10Ms</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, costask.o(i.App_Task_10Ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = App_Task_10Ms &rArr; IoHwAb_RunningLamp_MainFunction &rArr; Bsp_Gpio_Dio_Wrtie
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
-<LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IoHwAb_RunningLamp_MainFunction
+<BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IoHwAb_RunningLamp_MainFunction
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> costask.o(i.App_Task_Init)
 </UL>
 <P><STRONG><a name="[4c]"></a>App_Task_50Ms</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, costask.o(i.App_Task_50Ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = App_Task_50Ms &rArr; CosStart
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
-<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bsp_Watchdog_Feed
+<BR>[Calls]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bsp_Watchdog_Feed
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> costask.o(i.App_Task_Init)
 </UL>
@@ -822,10 +822,10 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[77]"></a>__set_PRIMASK</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, cos.o(i.__set_PRIMASK))
-<BR><BR>[Called By]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
-<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosCofigFnct
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosRefresh
+<BR><BR>[Called By]<UL><LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosRefresh
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosTask
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosStart
+<LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CosCofigFnct
 </UL>
 <P>
 <H3>

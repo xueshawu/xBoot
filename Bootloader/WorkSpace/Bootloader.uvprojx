@@ -407,6 +407,16 @@
               <FileType>1</FileType>
               <FilePath>..\Bsp\Uart\Bsp_Uart.c</FilePath>
             </File>
+            <File>
+              <FileName>Bsp_Uart_Queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Uart\Bsp_Uart_Queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>Bsp_UartIf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Uart\Bsp_UartIf.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -469,6 +479,11 @@
               <FileName>Rte.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Rte\Rte.c</FilePath>
+            </File>
+            <File>
+              <FileName>Rte_CrcCalculate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Rte\Rte_CrcCalculate.c</FilePath>
             </File>
           </Files>
         </Group>

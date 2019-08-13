@@ -2,6 +2,7 @@
 .\objects\bsp_uart.o: ..\Bsp\Uart\Bsp_Uart.h
 .\objects\bsp_uart.o: ..\Bsp\Uart\Bsp_UartType.h
 .\objects\bsp_uart.o: ..\Rte\Rte_PlatformType.h
+.\objects\bsp_uart.o: ..\Bsp\Uart\Bsp_UartIf.h
 .\objects\bsp_uart.o: ..\Bsp\Uart\Bsp_Uart_Queue.h
 .\objects\bsp_uart.o: ..\Cos\Cos.h
 .\objects\bsp_uart.o: ..\Core\stm32f10x.h

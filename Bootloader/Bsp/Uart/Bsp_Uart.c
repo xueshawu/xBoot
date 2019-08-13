@@ -4,6 +4,7 @@
 *********************************************************************************************************
 */
 #include "Bsp_Uart.h"
+#include "Bsp_UartIf.h"
 #include "Bsp_Uart_Queue.h"
 #include "Cos.h"
 #include "Rte_CrcCalculate.h"
@@ -19,8 +20,8 @@
 *********************************************************************************************************
 */
 
-#define Uart_Enter_Critical()	CosDisableAllInterrupt()
-#define Uart_Quit_Critical()	CosEnableAllInterrupt()
+#define Uart_Enter_Critical()		CosDisableAllInterrupt()
+#define Uart_Quit_Critical()		CosEnableAllInterrupt()
 
 #define Uart_GetCounter()			CosGetCounter()
 
@@ -263,7 +264,7 @@ static Uart_Bool Uart_CheckRxIsTimeout(uint8 fristTime,uint8 lastTime)
 	}	
 }
 
-static Uart_Bool Uart_CheckTxMsgID(uint16 id)
+static Uart_Bool Uart_CheckTxMsgId(uint16 id)
 {
 	uint8 loopcnt;
 	for(loopcnt=0;loopcnt<UART_TXID_MAX;loopcnt++) {
@@ -274,7 +275,7 @@ static Uart_Bool Uart_CheckTxMsgID(uint16 id)
 	return UART_FALSE;
 }
 
-static Uart_Bool Uart_CheckRxMsgID(uint16 id)
+static Uart_Bool Uart_CheckRxMsgId(uint16 id)
 {
 	uint8 loopcnt;
 	for(loopcnt=0;loopcnt<UART_RXID_MAX;loopcnt++) {
@@ -297,7 +298,7 @@ static void Uart_SendMsg(void)
 	uint8 txbuf[length];
 	uint8 MemCpyCnt = 0;
 	uint8 SendCnt = 0;
-	uint8 *BufPtr = (uint8 *)g_RxMsgInfo.RxMsgBuf;
+	uint8 *BufPtr = (uint8 *)g_TxMsgInfo.TxMsgBuf;
 	for(MemCpyCnt =0;MemCpyCnt<length;MemCpyCnt++) {
 		txbuf[MemCpyCnt] = *BufPtr;
 		BufPtr++;
@@ -407,9 +408,10 @@ void Bsp_Uart_RxMainFunction(void)
 	{
 		Uart_Queue_TransmitToBuffer(&g_Uart_RxQueque,buf);
 		Uart_MemCpyArray2Msg(buf,g_RxMsgInfo.RxMsgBuf);
-		if(Uart_CheckRxMsgID(g_RxMsgInfo.RxMsgBuf->MsgID)) {//只接收指定ID的报文
-			if(Uart_CheckRxCrcVal()) {//CRC校验
-				//将数据去除crc数据，并将数据推送到UartIf
+		if(Uart_CheckRxMsgId(g_RxMsgInfo.RxMsgBuf->MsgID)) {//只接收指定ID的报文
+			if(Uart_CheckRxCrcVal()) {
+				UartIf_RxIndication(g_RxMsgInfo.RxMsgBuf);
+				Uart_SetRxStatus(UART_RX_CONFIRM_FLAG);//置Confirm状态
 			} else {
 				Uart_SetRxStatus(UART_RX_CRC_FLAG);
 			}
@@ -435,11 +437,8 @@ void Bsp_Uart_TxMainFunction(void)
 			last_time = CosGetCounter();
 			Uart_Quit_Critical();
 			if(Uart_CheckTxIsTimeout(frist_time,last_time)) {
-				//Uart_SetTxTimeoutFlag(); //TODO 如果发生TxTimeout 应该怎么处理,
 				Uart_SetTxStatus(UART_TX_TIMEOUT_FLAG);
 			} else {
-				//Uart_ClearTxConfirmFlag();
-				//Uart_ClearTxBufFullFlag();
 				Uart_ClearTxStatus(UART_TX_CONFIRM_FLAG);
 				Uart_ClearTxStatus(UART_TX_FULL_FLAG);
 			}
@@ -459,6 +458,9 @@ Uart_StdType Uart_TransmitReq(uint16 messageId,uint8 *pMessageContent)
 	if(Uart_CheckTxBufIsFull()) {
 		return UART_TX_BUFISFULL;
 	}
+	if(!Uart_CheckTxMsgId(messageId)) {
+		return UART_TX_ID;
+	}
 	msgStructInfo.MsgID = messageId;
 	Uart_MemCpy(pMessageContent,&msgStructInfo.MsgData[0],MESSAGE_LENGTH);
 	Uart_CrcCalculate(messageId,pMessageContent,&msgStructInfo);
@@ -467,7 +469,7 @@ Uart_StdType Uart_TransmitReq(uint16 messageId,uint8 *pMessageContent)
 	return UART_OK;
 }
 
-Uart_StdType Uart_ReceiveReq(uint16 messageId,uint8 *pMessageContent)
+Uart_StdType Uart_ReceiveReq(uint16 messageId,uint8 *pMessageContent) //这个是不是不应该成为对外接口
 {	
 	Uart_StdType length = sizeof(MsgStrcutType);
 	if(pMessageContent == UART_NULL_PTR) {
@@ -476,13 +478,13 @@ Uart_StdType Uart_ReceiveReq(uint16 messageId,uint8 *pMessageContent)
 	if(Uart_CheckRxBufIsEmpty()) {
 		return UART_RX_BUFISEMPTY;
 	}
+	if(!Uart_CheckTxMsgId(messageId)) {
+		return UART_RX_ID;
+	}
 	Uart_MemCpy(g_RxMsgInfo.RxMsgBuf,pMessageContent,length);
 	Uart_SetRxStatus(UART_RX_CONFIRM_FLAG);//Uart_SetRxConfirmFlag();
 	return UART_OK;
 }
-
-
-
 
 /* 中断接收函数，只负责将接收到的输入缓存在queque中 */
 /* 由RxMainFuntion 来判断数据的正确性 */

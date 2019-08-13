@@ -27,6 +27,8 @@
 #define		UART_RX_TIMEOUT			0x04U
 #define		UART_TX_BUFISFULL		0x05U
 #define		UART_RX_BUFISEMPTY		0x06U
+#define		UART_TX_ID				0x07U
+#define		UART_RX_ID				0x08U
 
 #define		UART_TRUE				TRUE
 #define		UART_FALSE				FALSE
