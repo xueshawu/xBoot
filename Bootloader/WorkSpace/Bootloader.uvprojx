@@ -334,7 +334,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\App;..\Bsp\Gpio;..\Bsp\SysTick;..\Bsp\Uart;..\Bsp\Watchdog;..\Core;..\Cos;..\Hardware;..\IoHwAb;..\Rte;..\Rte;..\STM32F10x_StdPeriph_Driver\inc;..\STM32F10x_StdPeriph_Driver\src</IncludePath>
+              <IncludePath>..\App;..\Bsp\Gpio;..\Bsp\SysTick;..\Bsp\Uart;..\Bsp\Watchdog;..\Bsp\Pflash;..\Core;..\Cos;..\Hardware;..\IoHwAb;..\Rte;..\Rte;..\STM32F10x_StdPeriph_Driver\inc;..\STM32F10x_StdPeriph_Driver\src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -416,6 +416,16 @@
               <FileName>Bsp_UartIf.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Bsp\Uart\Bsp_UartIf.c</FilePath>
+            </File>
+            <File>
+              <FileName>Bsp_Pflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Pflash\Bsp_Pflash.c</FilePath>
+            </File>
+            <File>
+              <FileName>Bsp_PflashIf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Bsp\Pflash\Bsp_PflashIf.c</FilePath>
             </File>
           </Files>
         </Group>
