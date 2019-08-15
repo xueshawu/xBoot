@@ -26,25 +26,41 @@
 *********************************************************************************************************
 */
 /* buff指针 */
-uint32 *g_PflashWriteBuffPtr;
-uint32 *g_pflashReadBuffPtr;
+uint32 *g_PflashWriteBuffPtr = NULL_PTR;
+uint32 *g_pflashReadBuffPtr = NULL_PTR;
 
 /*
 *********************************************************************************************************
 *                                            LOCAL TABLES
 *********************************************************************************************************
 */
-uint32 g_ProgramBuff[PFLASH_PAGE_SIZE/4] = {0xFFFFFFFF}; //映射一个Page的大小5
+uint32 g_ProgramBuff[PFLASH_PAGE_SIZE/4] = {0xFFFFFFFF}; //映射一个Page的大小2kb
 
 /*
 *********************************************************************************************************
 *                                      LOCAL FUNCTION PROTOTYPES
 *********************************************************************************************************
 */
+
+static uint32 Pflash_ReadData(uint32 dataAddr) 
+{
+    return *(volatile uint32 *)dataAddr;
+}
+
 void Pflash_Init(void)
 {
     g_PflashWriteBuffPtr = g_ProgramBuff; //写缓存指针
     g_pflashReadBuffPtr = g_ProgramBuff; //读缓存指针
+}
+
+uint32 *Pflash_GetReadBufferPtr(void)
+{
+    return g_pflashReadBuffPtr;
+}
+
+uint32 *pflash_GetWriteBufferPtr(void)
+{
+    return g_PflashWriteBuffPtr;
 }
 
 /* 按Page写入，每次写满一个Page */
@@ -75,20 +91,31 @@ Std_ReturnType Pflash_WriteByPage(uint32 pageAddr, uint32 *pagedata)
 Std_ReturnType Pflash_ReadPage(uint32 pageAddr ,uint32 *readAddr) 
 {
     uint32 pageSize = PFLASH_PAGE_SIZE;
-    FLASH_Status status = FLASH_COMPLETE;
+    uint32 loopCnt = 0x0;
     if((pageAddr % PFLASH_PAGE_SIZE) != 0) {
         return PFLASH_E_ADDR;
     }
-
+    for(; loopCnt<pageSize; loopCnt++) {
+        *readAddr = Pflash_ReadData(pageAddr);
+        pageAddr += 4;
+    }
+    return PFLASH_E_OK;
 }
 
 
 Std_ReturnType Pflash_EraseByPage(uint32 pageAddr)
 {
+    FLASH_Status status = FLASH_COMPLETE;
     if(pageaddr % PFLASH_PAGE_SIZE !=0) {
         return PFLASH_E_ADDR;
     }
-	FLASH_ErasePage()
+	status = FLASH_ErasePage(pageAddr);
+    if(status != FLASH_COMPLETE) {
+        return PFLASH_E_NOTOK;
+    } else {
+        return PFLASH_E_OK;
+    }
+
 }
 
 
